@@ -1631,7 +1631,10 @@
             tapeItems[winPos].dataset.rarity = winItem.r;
 
             // Calculate scroll distance: center the winPos item under the marker
-            const itemW = 110 + 8; // flex:0 0 110px + margin 4px*2
+            // Measure actual item width dynamically (responsive-safe)
+            const firstItem = tapeItems[0];
+            const itemStyle = getComputedStyle(firstItem);
+            const itemW = firstItem.offsetWidth + parseFloat(itemStyle.marginLeft) + parseFloat(itemStyle.marginRight);
             const boxW = reelBox.offsetWidth;
             const targetX = winPos * itemW - boxW / 2 + itemW / 2;
 
