@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROYAL FORTUNE — Гранд-открытие | Розыгрыш призов</title>
+    <meta name="description" content="Крутите ленту и выигрывайте реальные призы в честь гранд-открытия ROYAL FORTUNE!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #07060b;
+            --bg2: #0e0d15;
+            --surface: #13121d;
+            --surface2: #19182a;
+            --gold1: #d4a843;
+            --gold2: #f5d076;
+            --gold3: #b8941e;
+            --gold4: #8b6914;
+            --accent: #c9302c;
+            --accent2: #e8453f;
+            --emerald: #34d399;
+            --purple: #a78bfa;
+            --cyan: #22d3ee;
+            --text: #ededed;
+            --text2: #9896a8;
+            --border: rgba(212, 168, 67, 0.12);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass2: rgba(255, 255, 255, 0.06);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ══ LUXURY BG ══ */
+        .lux-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .lux-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 0%, rgba(212, 168, 67, 0.07) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 80% 100%, rgba(167, 139, 250, 0.04) 0%, transparent 55%),
+                radial-gradient(ellipse 40% 30% at 15% 80%, rgba(201, 48, 44, 0.04) 0%, transparent 50%);
+        }
+
+        .dust {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .dust.gold {
+            background: radial-gradient(circle, rgba(212, 168, 67, 0.6), transparent 70%);
+        }
+
+        .dust.white {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent 70%);
+        }
+
+        @keyframes dustFloat {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            85% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-200px) translateX(30px);
+                opacity: 0;
+            }
+        }
+
+        /* ══ ORNAMENT ══ */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 10px 0;
+        }
+
+        .ornament .line {
+            flex: 1;
+            max-width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold1), transparent);
+        }
+
+        .ornament .diamond {
+            width: 6px;
+            height: 6px;
+            background: var(--gold1);
+            transform: rotate(45deg);
+            box-shadow: 0 0 8px rgba(212, 168, 67, 0.4);
+        }
+
+        /* ══ LAYOUT ══ */
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 0 16px 50px;
+        }
+
+        /* ══ TOPBAR ══ */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 0 0;
+        }
+
+        .topbar .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+            animation: livePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes livePulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .6;
+                transform: scale(.85)
+            }
+        }
+
+        .topbar span {
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--text2);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* ══ HERO ══ */
+        .hero {
+            text-align: center;
+            padding: 16px 0 0;
+        }
+
+        .crown {
+            font-size: 2rem;
+            margin-bottom: -4px;
+            filter: drop-shadow(0 0 12px rgba(212, 168, 67, 0.4));
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            background: linear-gradient(180deg, var(--gold2) 0%, var(--gold1) 40%, var(--gold3) 80%, var(--gold4) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 20px rgba(212, 168, 67, 0.25));
+            line-height: 1.1;
+        }
+
+        .brand-sub {
+            font-size: 0.62rem;
+            letter-spacing: 10px;
+            color: var(--gold1);
+            text-transform: uppercase;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 14px auto 0;
+            padding: 8px 22px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 20px rgba(201, 48, 44, 0.25);
+        }
+
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 18px 0 6px;
+            line-height: 1.35;
+        }
+
+        .hero-tagline em {
+            font-style: italic;
+            color: var(--gold2);
+        }
+
+        .hero-sub {
+            font-size: 0.8rem;
+            color: var(--text2);
+            line-height: 1.65;
+            max-width: 420px;
+            margin: 0 auto 8px;
+        }
+
+        .hero-sub strong {
+            color: var(--gold2);
+            font-weight: 700;
+        }
+
+        /* ══ COUNTER BAR ══ */
+        .counter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin: 14px 0 20px;
+        }
+
+        .counter-item {
+            text-align: center;
+        }
+
+        .counter-item .cv {
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold2), var(--gold1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .counter-item .cl {
+            font-size: 0.6rem;
+            color: var(--text2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1px;
+        }
+
+        /* ══ CS:GO REEL ══ */
+        .reel-section {
+            margin: 10px 0 20px;
+        }
+
+        .reel-section h3 {
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        .reel-section h3 span {
+            color: var(--gold2);
+        }
+
+        .reel-box {
+            position: relative;
+            width: 100%;
+            height: 110px;
+            background: linear-gradient(145deg, var(--surface2), var(--surface));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        /* pointer / marker line */
+        .reel-marker {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            z-index: 10;
+            background: var(--gold2);
+            box-shadow: 0 0 12px rgba(212, 168, 67, 0.5), 0 0 30px rgba(212, 168, 67, 0.2);
+        }
+
+        .reel-marker::before,
+        .reel-marker::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+        }
+
+        .reel-marker::before {
+            top: -1px;
+            border-top: 10px solid var(--gold2);
+        }
+
+        .reel-marker::after {
+            bottom: -1px;
+            border-bottom: 10px solid var(--gold2);
+        }
+
+        /* the tape */
+        .reel-tape {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            transition: none;
+            will-change: transform;
+        }
+
+        .reel-item {
+            flex: 0 0 110px;
+            height: 90px;
+            margin: 0 4px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            border: 2px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reel-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .reel-item .ri-emoji {
+            font-size: 1.8rem;
+        }
+
+        .reel-item .ri-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+        }
+
+        .reel-item .ri-name {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 0 4px;
+            line-height: 1.2;
+            color: var(--text);
+        }
+
+        /* rarity colors */
+        .reel-item.leg {
+            background: linear-gradient(145deg, #3d2c08, #1a1306);
+            border-color: rgba(212, 168, 67, 0.35);
+        }
+
+        .reel-item.epic {
+            background: linear-gradient(145deg, #2d1b4e, #150d28);
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+
+        .reel-item.rare {
+            background: linear-gradient(145deg, #0c2d3a, #061720);
+            border-color: rgba(34, 211, 238, 0.25);
+        }
+
+        .reel-item.common {
+            background: linear-gradient(145deg, #1a1a2e, #0f0f1c);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .reel-item.lose {
+            background: linear-gradient(145deg, #1a0a0a, #0d0505);
+            border-color: rgba(255, 60, 60, 0.15);
+        }
+
+        .reel-item.lose .ri-emoji {
+            opacity: 0.6;
+        }
+
+        .reel-item.winner {
+            animation: winGlow 1s ease-in-out infinite;
+        }
+
+        @keyframes winGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px rgba(212, 168, 67, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 25px rgba(212, 168, 67, 0.6);
+            }
+        }
+
+        .btn-open {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 44px;
+            background: linear-gradient(135deg, var(--gold2), var(--gold1), var(--gold3));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 60px;
+            color: var(--bg);
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            box-shadow: 0 4px 25px rgba(212, 168, 67, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            transition: transform .25s, box-shadow .25s;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-open:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(212, 168, 67, 0.35);
+        }
+
+        .btn-open:active:not(:disabled) {
+            transform: scale(.97);
+        }
+
+        .btn-open:disabled {
+            opacity: .3;
+            cursor: not-allowed;
+        }
+
+        .attempts-info {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.78rem;
+            color: var(--text2);
+        }
+
+        .attempts-info strong {
+            color: var(--gold2);
+        }
+
+        /* ══ RESULTS SECTION ══ */
+        .results-section {
+            display: none;
+            margin: 24px 0;
+        }
+
+        .results-section.on {
+            display: block;
+        }
+
+        .results-section h3 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: var(--gold2);
+            margin-bottom: 14px;
+        }
+
+        .results-grid {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .result-card {
+            width: 140px;
+            padding: 18px 10px;
+            background: var(--glass);
+            border: 2px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform .3s, border-color .3s, box-shadow .3s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 168, 67, 0.3);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .result-card.selected {
+            border-color: var(--gold2);
+            box-shadow: 0 0 20px rgba(212, 168, 67, 0.2);
+            background: rgba(212, 168, 67, 0.06);
+        }
+
+        .result-card .rc-emoji {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+
+        .result-card .rc-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+        }
+
+        .result-card .rc-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .result-card .rc-rarity {
+            display: inline-block;
+            font-size: 0.6rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .result-card.leg .rc-rarity {
+            background: rgba(212, 168, 67, 0.1);
+            color: var(--gold2);
+            border: 1px solid rgba(212, 168, 67, 0.15);
+        }
+
+        .result-card.epic .rc-rarity {
+            background: rgba(167, 139, 250, 0.08);
+            color: var(--purple);
+            border: 1px solid rgba(167, 139, 250, 0.15);
+        }
+
+        .result-card.rare .rc-rarity {
+            background: rgba(34, 211, 238, 0.06);
+            color: var(--cyan);
+            border: 1px solid rgba(34, 211, 238, 0.12);
+        }
+
+        .result-card.common .rc-rarity {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text2);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .result-card.lose {
+            opacity: 0.35;
+            pointer-events: none;
+            filter: grayscale(0.8);
+        }
+
+        .result-card.lose .rc-rarity {
+            background: rgba(255, 60, 60, 0.06);
+            color: #ff5555;
+            border: 1px solid rgba(255, 60, 60, 0.12);
+        }
+
+        /* ══ ALL LOST MESSAGE ══ */
+        .all-lost-section {
+            display: none;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .all-lost-section.on {
+            display: block;
+        }
+
+        .all-lost-inner {
+            background: linear-gradient(145deg, var(--glass2), var(--glass));
+            border: 1px solid rgba(201, 48, 44, 0.15);
+            border-radius: 20px;
+            padding: 30px 24px;
+        }
+
+        .all-lost-inner .lost-ic {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+
+        .all-lost-inner h3 {
+            color: var(--accent2);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .all-lost-inner p {
+            font-size: 0.82rem;
+            color: var(--text2);
+            line-height: 1.65;
+        }
+
+        .all-lost-inner .try-again-hint {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 8px 20px;
+            background: rgba(212, 168, 67, 0.08);
+            border: 1px solid rgba(212, 168, 67, 0.12);
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: var(--gold2);
+            font-weight: 600;
+        }
+
+        .btn-choose {
+            display: none;
+            margin: 18px auto 0;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, var(--gold2), var(--gold1), var(--gold3));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 60px;
+            color: var(--bg);
+            font-size: 0.9rem;
+            font-weight: 800;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            box-shadow: 0 4px 20px rgba(212, 168, 67, 0.2);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .btn-choose.on {
+            display: block;
+        }
+
+        .btn-choose:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(212, 168, 67, 0.3);
+        }
+
+        /* ══ CLAIM SECTION ══ */
+        .claim-section {
+            display: none;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .claim-section.on {
+            display: block;
+        }
+
+        .claim-card {
+            background: linear-gradient(145deg, var(--glass2), var(--glass));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px 24px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+        }
+
+        .claim-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.2), transparent);
+        }
+
+        .claim-card .wemoji {
+            font-size: 2.8rem;
+            margin-bottom: 6px;
+        }
+
+        .claim-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold2);
+            margin-bottom: 4px;
+        }
+
+        .claim-card .prize-label {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .claim-card .claim-desc {
+            font-size: 0.78rem;
+            color: var(--text2);
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .claim-card .claim-desc strong {
+            color: var(--gold2);
+        }
+
+        .claim-card .share-box {
+            background: rgba(212, 168, 67, 0.04);
+            border: 1px solid rgba(212, 168, 67, 0.1);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 18px;
+        }
+
+        .claim-card .share-box p {
+            font-size: 0.78rem;
+            color: var(--text2);
+            margin-bottom: 10px;
+        }
+
+        .claim-card .share-box p strong {
+            color: var(--gold2);
+        }
+
+        .share-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .share-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 11px 12px;
+            color: var(--text);
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .btn-share {
+            padding: 11px 18px;
+            background: linear-gradient(135deg, var(--gold1), var(--gold3));
+            border: none;
+            border-radius: 10px;
+            color: var(--bg);
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+            transition: transform .2s;
+        }
+
+        .btn-share:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ══ SHARE PROGRESS ══ */
+        .share-progress {
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+        }
+
+        .share-progress .sp-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.72rem;
+            color: var(--text2);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .share-progress .sp-label .sp-count {
+            color: var(--gold2);
+            font-weight: 800;
+        }
+
+        .share-progress .sp-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .share-progress .sp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold3), var(--gold2));
+            border-radius: 3px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .share-progress .sp-fill.done {
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+        }
+
+        .share-progress .sp-hint {
+            font-size: 0.68rem;
+            color: var(--text2);
+            margin-top: 6px;
+            opacity: 0.7;
+        }
+
+
+
+        .fg {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .fg label {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text2);
+            margin-bottom: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .fg input {
+            width: 100%;
+            padding: 13px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 0.88rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color .3s, box-shadow .3s;
+        }
+
+        .fg input:focus {
+            border-color: var(--gold1);
+            box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.08);
+        }
+
+        .fg input::placeholder {
+            color: rgba(255, 255, 255, 0.18);
+        }
+
+        .btn-claim {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--gold2), var(--gold1), var(--gold3));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            color: var(--bg);
+            font-size: 0.92rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 4px;
+            font-family: 'Inter', sans-serif;
+            transition: transform .2s, box-shadow .2s;
+            box-shadow: 0 4px 20px rgba(212, 168, 67, 0.2);
+        }
+
+        .btn-claim:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(212, 168, 67, 0.3);
+        }
+
+        /* ══ OK VIEW ══ */
+        .ok-section {
+            display: none;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .ok-section.on {
+            display: block;
+        }
+
+        .ok-inner {
+            background: linear-gradient(145deg, var(--glass2), var(--glass));
+            border: 1px solid rgba(52, 211, 153, 0.15);
+            border-radius: 20px;
+            padding: 30px 24px;
+        }
+
+        .ok-inner .ok-ic {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+
+        .ok-inner h3 {
+            color: var(--emerald);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .ok-inner p {
+            font-size: 0.82rem;
+            color: var(--text2);
+            line-height: 1.65;
+        }
+
+        .ok-inner .ok-prize {
+            color: var(--gold2);
+            font-weight: 800;
+            font-size: 1rem;
+            margin-top: 6px;
+        }
+
+        .ok-inner .ok-date {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 20px;
+            background: rgba(212, 168, 67, 0.08);
+            border: 1px solid rgba(212, 168, 67, 0.12);
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: var(--gold2);
+            font-weight: 600;
+        }
+
+        /* ══ DEVICE LIMIT BLOCK ══ */
+        .blocked-section {
+            display: none;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .blocked-section.on {
+            display: block;
+        }
+
+        .blocked-inner {
+            background: linear-gradient(145deg, var(--glass2), var(--glass));
+            border: 1px solid rgba(201, 48, 44, 0.2);
+            border-radius: 20px;
+            padding: 30px 24px;
+        }
+
+        .blocked-inner .blocked-ic {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+
+        .blocked-inner h3 {
+            color: var(--accent2);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .blocked-inner p {
+            font-size: 0.82rem;
+            color: var(--text2);
+            line-height: 1.65;
+        }
+
+        .blocked-inner .blocked-count {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 20px;
+            background: rgba(201, 48, 44, 0.08);
+            border: 1px solid rgba(201, 48, 44, 0.15);
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: var(--accent2);
+            font-weight: 600;
+        }
+
+        /* ══ STORY ══ */
+        .glass-card {
+            background: linear-gradient(145deg, var(--glass2), var(--glass));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.2), transparent);
+        }
+
+        .story {
+            margin: 24px 0;
+        }
+
+        .story h2 {
+            position: relative;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: var(--gold2);
+            margin-bottom: 10px;
+        }
+
+        .story p {
+            position: relative;
+            font-size: 0.82rem;
+            line-height: 1.75;
+            color: var(--text2);
+        }
+
+        .story p strong {
+            color: var(--gold2);
+        }
+
+        /* ══ PRIZES LIST ══ */
+        .prizes {
+            margin: 26px 0;
+        }
+
+        .prizes h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: var(--gold2);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .pz {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: transform .3s, border-color .3s, box-shadow .3s;
+        }
+
+        .pz:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 168, 67, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .pz .ic {
+            font-size: 1.7rem;
+            margin-bottom: 6px;
+        }
+
+        .pz .ic img {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+        }
+
+        .pz .nm {
+            font-size: 0.78rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .pz .rt {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.6rem;
+            margin-top: 5px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pz.leg .rt {
+            background: rgba(212, 168, 67, 0.1);
+            color: var(--gold2);
+            border: 1px solid rgba(212, 168, 67, 0.15);
+        }
+
+        .pz.epic .rt {
+            background: rgba(167, 139, 250, 0.08);
+            color: var(--purple);
+            border: 1px solid rgba(167, 139, 250, 0.15);
+        }
+
+        .pz.rare .rt {
+            background: rgba(34, 211, 238, 0.06);
+            color: var(--cyan);
+            border: 1px solid rgba(34, 211, 238, 0.12);
+        }
+
+        .pz .rt.common {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text2);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ══ CONFETTI ══ */
+        .conf-box {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 200;
+            overflow: hidden;
+        }
+
+        .cp {
+            position: absolute;
+            top: -20px;
+            opacity: 0;
+            animation: cFall 3s ease-in forwards;
+        }
+
+        @keyframes cFall {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0
+            }
+        }
+
+        /* ══ FOOTER ══ */
+        .footer {
+            text-align: center;
+            padding: 22px 0 8px;
+            margin-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer p {
+            font-size: 0.65rem;
+            color: var(--text2);
+            line-height: 1.8;
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:400px) {
+            .brand {
+                font-size: 2rem;
+                letter-spacing: 5px;
+            }
+
+            .reel-item {
+                flex: 0 0 90px;
+                height: 80px;
+            }
+
+            .result-card {
+                width: 100px;
+                padding: 14px 8px;
+            }
+
+            .result-card .rc-emoji {
+                font-size: 1.5rem;
+            }
+
+            .result-card .rc-name {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* ══ SPIN SOUND VISUAL TICK ══ */
+        .reel-box.active .reel-marker {
+            animation: markerFlash .1s ease;
+        }
+
+        @keyframes markerFlash {
+            0% {
+                box-shadow: 0 0 12px rgba(212, 168, 67, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(212, 168, 67, 0.9);
+            }
+
+            100% {
+                box-shadow: 0 0 12px rgba(212, 168, 67, 0.5);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="lux-bg" id="luxBg"></div>
+
+    <div class="page">
+
+        <div class="topbar">
+            <div class="live-dot"></div>
+            <span>Сейчас онлайн: <b id="onlineCount">1 247</b></span>
+        </div>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="crown">👑</div>
+            <h1 class="brand">ROYAL FORTUNE</h1>
+            <div class="brand-sub">Exclusive Club</div>
+            <div class="ornament"><span class="line"></span><span class="diamond"></span><span class="line"></span>
+            </div>
+            <div class="hero-badge">🎰 Гранд-открытие</div>
+
+            <h2 class="hero-tagline">Крути барабан — <em>забери приз</em></h2>
+            <p class="hero-sub">
+                В честь гранд-открытия <strong>ROYAL FORTUNE</strong> мы дарим реальные призы!
+                У вас <strong>3 попытки</strong> крутить барабан. Выберите лучший приз
+                и поделитесь ссылкой, чтобы его забрать!
+            </p>
+
+
+        </section>
+
+        <!-- REEL SECTION -->
+        <section class="reel-section" id="reelSection">
+            <h3>🎰 Попытка <span id="attemptNum">1</span> из <span>3</span></h3>
+
+            <div class="reel-box" id="reelBox">
+                <div class="reel-marker"></div>
+                <div class="reel-tape" id="reelTape"></div>
+            </div>
+
+            <div style="text-align:center;">
+                <button class="btn-open" id="btnOpen" onclick="openCase()">🎰 Крутить барабан</button>
+            </div>
+
+            <div class="attempts-info" id="attemptsInfo">
+                Осталось попыток: <strong id="attemptsLeft">3</strong>
+            </div>
+        </section>
+
+        <!-- RESULTS (after all 3 spins) -->
+        <section class="results-section" id="resultsSection">
+            <h3>Выберите один приз:</h3>
+            <div class="results-grid" id="resultsGrid"></div>
+            <button class="btn-choose" id="btnChoose" onclick="choosePrize()">Забрать этот приз</button>
+        </section>
+
+        <!-- CLAIM SECTION (share + form) -->
+        <section class="claim-section" id="claimSection">
+            <div class="claim-card">
+                <div class="wemoji" id="claimEmoji">🎉</div>
+                <h2>Ваш приз:</h2>
+                <div class="prize-label" id="claimPrizeName"></div>
+
+                <div class="claim-desc">
+                    Чтобы забрать приз, <strong>обязательно поделитесь ссылкой минимум с 2 друзьями</strong>.
+                    Только после этого форма станет доступна. Наш менеджер свяжется с вами!
+                </div>
+
+                <div class="share-box">
+                    <p>📢 <strong>Поделитесь ссылкой с 2 друзьями</strong> — это обязательное условие:</p>
+                    <div class="share-row">
+                        <input type="text" class="share-input" id="shareInput" readonly>
+                        <button class="btn-share" id="btnShareCopy" onclick="copyLink()">Копировать</button>
+                    </div>
+                    <div class="share-progress" id="shareProgress">
+                        <div class="sp-label">
+                            <span>👥 Друзья перешли по ссылке:</span>
+                            <span class="sp-count" id="spCount">0 / 2</span>
+                        </div>
+                        <div class="sp-bar">
+                            <div class="sp-fill" id="spFill"></div>
+                        </div>
+                        <div class="sp-hint" id="spHint">Скопируйте ссылку и отправьте друзьям. Мы проверяем переходы.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fg"><label>Ваше имя</label><input id="iName" placeholder="Введите имя"></div>
+                <div class="fg"><label>Телефон или Email</label><input id="iPhone" type="text"
+                        placeholder="+7 (___) ___-__-__ или email@example.com">
+                </div>
+                <button class="btn-claim" onclick="claim()">Подтвердить и забрать приз 🎁</button>
+            </div>
+        </section>
+
+        <!-- OK SECTION -->
+        <section class="ok-section" id="okSection">
+            <div class="ok-inner">
+                <div class="ok-ic">🏆</div>
+                <h3>Заявка принята!</h3>
+                <p>Вы выбрали приз:</p>
+                <div class="ok-prize" id="okPrize"></div>
+                <p style="margin-top:10px;">Наш менеджер свяжется с вами в ближайшее время для согласования вручения
+                    приза.</p>
+            </div>
+        </section>
+
+        <!-- DEVICE LIMIT BLOCKED -->
+        <section class="blocked-section" id="blockedSection">
+            <div class="blocked-inner">
+                <div class="blocked-ic">🚫</div>
+                <h3>Лимит попыток исчерпан</h3>
+                <p>На данном устройстве разрешено только <strong style="color:var(--gold2)">3 попытки</strong> участия в
+                    розыгрыше.</p>
+                <p style="margin-top:10px;">Вы уже использовали все свои попытки. Спасибо за участие!</p>
+                <div class="blocked-count" id="blockedCount">Использовано: 3 из 3</div>
+            </div>
+        </section>
+
+        <!-- ALL LOST SECTION -->
+        <section class="all-lost-section" id="allLostSection">
+            <div class="all-lost-inner">
+                <div class="lost-ic">😔</div>
+                <h3>Не повезло в этот раз!</h3>
+                <p>К сожалению, вам не удалось выиграть приз в этом раунде.</p>
+                <p style="margin-top:8px;">Не расстраивайтесь — удача улыбнётся вам в следующий раз!</p>
+                <div class="try-again-hint">🍀 Попробуйте ещё раз</div>
+            </div>
+        </section>
+
+        <!-- STORY -->
+        <section class="story glass-card">
+            <h2>🏆 Почему мы это делаем?</h2>
+            <p>
+                <strong>ROYAL FORTUNE</strong> — эксклюзивный клуб для ценителей азарта
+                и роскоши. В честь гранд-открытия мы запустили <strong>розыгрыш
+                    реальных призов</strong>. Крутите барабан, выберите лучший приз
+                и заберите его! Нам — узнаваемость, вам — подарки. 🎉
+            </p>
+        </section>
+
+        <!-- PRIZES -->
+        <section class="prizes">
+            <h3>🎁 Что может выпасть</h3>
+            <div class="prizes-grid">
+                <div class="pz leg">
+                    <div class="ic"><img src="priz/BYD Han.webp" alt="BYD Han"></div>
+                    <div class="nm">Автомобиль BYD Han</div>
+                    <div class="rt">★ Легендарный</div>
+                </div>
+                <div class="pz leg">
+                    <div class="ic"><img src="priz/iPhone-17-Pro-Max-Concept-Art-PNG.png" alt="iPhone 17"></div>
+                    <div class="nm">iPhone 17 Pro Max</div>
+                    <div class="rt">★ Легендарный</div>
+                </div>
+                <div class="pz epic">
+                    <div class="ic"><img src="priz/versace Chrono Master 44.webp" alt="Versace"></div>
+                    <div class="nm">Versace Chrono Master</div>
+                    <div class="rt">◆ Эпический</div>
+                </div>
+                <div class="pz epic">
+                    <div class="ic"><img src="priz/airpods 3 pro-png-image_7081756.png" alt="AirPods"></div>
+                    <div class="nm">AirPods 3 Pro</div>
+                    <div class="rt">◆ Эпический</div>
+                </div>
+                <div class="pz rare">
+                    <div class="ic"><img src="priz/televizor.png" alt="TV"></div>
+                    <div class="nm">Телевизор Samsung</div>
+                    <div class="rt">● Редкий</div>
+                </div>
+                <div class="pz">
+                    <div class="ic"><img src="priz/fishki png.png" alt="$10 000"></div>
+                    <div class="nm">Фишки $10 000</div>
+                    <div class="rt common">Обычный</div>
+                </div>
+                <div class="pz">
+                    <div class="ic"><img src="priz/fishki png.png" alt="$5 000"></div>
+                    <div class="nm">Фишки $5 000</div>
+                    <div class="rt common">Обычный</div>
+                </div>
+                <div class="pz">
+                    <div class="ic"><img src="priz/fishki png.png" alt="$1 000"></div>
+                    <div class="nm">Фишки $1 000</div>
+                    <div class="rt common">Обычный</div>
+                </div>
+                <div class="pz">
+                    <div class="ic"><img src="priz/fishki png.png" alt="$100"></div>
+                    <div class="nm">Фишки $100</div>
+                    <div class="rt common">Обычный</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 ROYAL FORTUNE — All Rights Reserved</p>
+            <p>18+ <span id="claimsCount" style="opacity:0.15;font-size:0.5rem;margin-left:6px">0</span></p>
+        </footer>
+    </div>
+
+    <div class="conf-box" id="confBox"></div>
+
+    <script>
+        /* ═══ PRIZES: label, image path, rarity class, weight ═══ */
+        const ITEMS = [
+            { l: 'Не повезло', img: null, emoji: '✕', r: 'lose', w: 40 },
+            { l: 'Фишки $100', img: 'priz/fishki png.png', r: 'common', w: 30 },
+            { l: 'Фишки $1 000', img: 'priz/fishki png.png', r: 'common', w: 22 },
+            { l: 'Фишки $5 000', img: 'priz/fishki png.png', r: 'rare', w: 12 },
+            { l: 'Фишки $10 000', img: 'priz/fishki png.png', r: 'rare', w: 6 },
+            { l: 'Телевизор Samsung', img: 'priz/televizor.png', r: 'rare', w: 10 },
+            { l: 'AirPods 3 Pro', img: 'priz/airpods 3 pro-png-image_7081756.png', r: 'epic', w: 8 },
+            { l: 'Versace Chrono Master', img: 'priz/versace Chrono Master 44.webp', r: 'epic', w: 5 },
+            { l: 'iPhone 17 Pro Max', img: 'priz/iPhone-17-Pro-Max-Concept-Art-PNG.png', r: 'leg', w: 3 },
+            { l: 'Автомобиль BYD Han', img: 'priz/BYD Han.webp', r: 'leg', w: 1 },
+        ];
+
+        const RARITY_LABELS = { common: 'Обычный', rare: 'Редкий', epic: 'Эпический', leg: 'Легендарный', lose: 'Не повезло' };
+
+        const MAX_ATTEMPTS = 3;
+        let attempts = 0;
+        let wonPrizes = [];
+        let selectedPrize = null;
+        let isRolling = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            mkDust();
+            fakeCounters();
+            initRefLink();
+            buildTape();
+            checkDone();
+            initClaimsCounter();
+
+            document.getElementById('iPhone').addEventListener('input', e => {
+                let v = e.target.value.replace(/\D/g, '');
+                if (v.length > 0 && (v[0] === '7' || v[0] === '8')) {
+                    v = v.substring(0, 11); let f = '+7';
+                    if (v.length > 1) f += ' (' + v.substring(1, 4);
+                    if (v.length > 4) f += ') ' + v.substring(4, 7);
+                    if (v.length > 7) f += '-' + v.substring(7, 9);
+                    if (v.length > 9) f += '-' + v.substring(9, 11);
+                    e.target.value = f;
+                }
+            });
+        });
+
+        /* ═══ DUST ═══ */
+        function mkDust() {
+            const c = document.getElementById('luxBg');
+            for (let i = 0; i < 30; i++) {
+                const d = document.createElement('div');
+                d.className = 'dust ' + (Math.random() > .3 ? 'gold' : 'white');
+                const s = Math.random() * 3 + 1.5;
+                Object.assign(d.style, {
+                    width: s + 'px', height: s + 'px', left: Math.random() * 100 + '%', top: 60 + Math.random() * 40 + '%',
+                    animation: `dustFloat ${8 + Math.random() * 12}s ${Math.random() * 10}s infinite ease-in-out`
+                });
+                c.appendChild(d);
+            }
+        }
+
+        function fakeCounters() {
+            const el = document.getElementById('onlineCount');
+            setInterval(() => {
+                let v = parseInt(el.textContent.replace(/\s/g, ''));
+                const delta = Math.floor(Math.random() * 15) + 1;
+                v += Math.random() > 0.45 ? delta : -delta;
+                if (v < 900) v = 900 + Math.floor(Math.random() * 50);
+                if (v > 2000) v = 2000 - Math.floor(Math.random() * 50);
+                el.textContent = v.toLocaleString('ru-RU');
+            }, 1500);
+        }
+
+        /* ═══ REF LINK ═══ */
+        const REQUIRED_SHARES = 2;
+        let shareCheckTimer = null;
+
+        function initRefLink() {
+            let uid = localStorage.getItem('rf_uid');
+            if (!uid) { uid = 'u' + Math.random().toString(36).substr(2, 8); localStorage.setItem('rf_uid', uid); }
+            const base = location.href.split('?')[0];
+            document.getElementById('shareInput').value = base + '?ref=' + uid;
+
+            // track incoming ref
+            const par = new URLSearchParams(location.search), from = par.get('ref');
+            if (from && from !== uid) {
+                let rc = JSON.parse(localStorage.getItem('rf_counts') || '{}');
+                if (!rc[from]) rc[from] = 0;
+                if (!localStorage.getItem('rf_v_' + from)) {
+                    rc[from]++; localStorage.setItem('rf_counts', JSON.stringify(rc));
+                    localStorage.setItem('rf_v_' + from, '1');
+                }
+            }
+        }
+
+        function getShareCount() {
+            const uid = localStorage.getItem('rf_uid');
+            if (!uid) return 0;
+            const rc = JSON.parse(localStorage.getItem('rf_counts') || '{}');
+            return rc[uid] || 0;
+        }
+
+        function updateShareProgress() {
+            const count = Math.min(getShareCount(), REQUIRED_SHARES);
+            const spCount = document.getElementById('spCount');
+            const spFill = document.getElementById('spFill');
+            const spHint = document.getElementById('spHint');
+            const formWrap = document.getElementById('claimFormWrap');
+            const btnClaim = document.getElementById('btnClaim');
+
+            if (!spCount) return;
+
+            spCount.textContent = `${count} / ${REQUIRED_SHARES}`;
+            spFill.style.width = `${(count / REQUIRED_SHARES) * 100}%`;
+
+            if (count >= REQUIRED_SHARES) {
+                spFill.classList.add('done');
+                spHint.textContent = '✅ Отлично! Условие выполнено!';
+                spHint.style.color = '#22c55e';
+                spHint.style.opacity = '1';
+                if (shareCheckTimer) { clearInterval(shareCheckTimer); shareCheckTimer = null; }
+            } else {
+                spFill.classList.remove('done');
+                spHint.textContent = `Осталось: ${REQUIRED_SHARES - count}. Скопируйте ссылку и отправьте друзьям.`;
+            }
+        }
+
+        function startShareChecking() {
+            updateShareProgress();
+            if (getShareCount() < REQUIRED_SHARES) {
+                shareCheckTimer = setInterval(() => {
+                    updateShareProgress();
+                }, 3000);
+            }
+        }
+
+        function copyLink() {
+            const inp = document.getElementById('shareInput');
+            navigator.clipboard.writeText(inp.value).then(() => {
+                const btns = document.querySelectorAll('.btn-share');
+                btns.forEach(b => { b.textContent = '✓ Скопировано'; b.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)'; });
+                setTimeout(() => { btns.forEach(b => { b.textContent = 'Копировать'; b.style.background = ''; }); }, 2500);
+                // Start checking for shares after first copy
+                if (!shareCheckTimer) startShareChecking();
+            }).catch(() => { inp.select(); document.execCommand('copy'); });
+        }
+
+        /* ═══ BUILD TAPE ═══ */
+        function buildTape() {
+            const tape = document.getElementById('reelTape');
+            tape.innerHTML = '';
+            // Generate ~60 items for tape
+            const count = 60;
+            for (let i = 0; i < count; i++) {
+                const item = wRandItem();
+                const el = document.createElement('div');
+                el.className = 'reel-item ' + item.r;
+                if (item.img) {
+                    el.innerHTML = `<img class="ri-img" src="${item.img}" alt="${item.l}"><div class="ri-name">${item.l}</div>`;
+                } else {
+                    el.innerHTML = `<span class="ri-emoji">${item.emoji || '✕'}</span><div class="ri-name">${item.l}</div>`;
+                }
+                el.dataset.index = i;
+                el.dataset.label = item.l;
+                el.dataset.emoji = item.e;
+                el.dataset.rarity = item.r;
+                tape.appendChild(el);
+            }
+            // Center tape at beginning
+            tape.style.transform = 'translateX(0px)';
+        }
+
+        function wRandItem() {
+            const tot = ITEMS.reduce((s, p) => s + p.w, 0);
+            let r = Math.random() * tot;
+            for (let i = 0; i < ITEMS.length; i++) { r -= ITEMS[i].w; if (r <= 0) return ITEMS[i]; }
+            return ITEMS[ITEMS.length - 1];
+        }
+
+        /* ═══ OPEN CASE ═══ */
+        function openCase() {
+            if (isRolling || attempts >= MAX_ATTEMPTS) return;
+            isRolling = true;
+            document.getElementById('btnOpen').disabled = true;
+
+            const tape = document.getElementById('reelTape');
+            const reelBox = document.getElementById('reelBox');
+
+            // Rebuild tape each time for fresh randomness
+            buildTape();
+
+            // Decide winning item
+            const winItem = wRandItem();
+            // Place it at a specific position far into tape
+            const winPos = 40 + Math.floor(Math.random() * 5); // around 40-44
+            const tapeItems = tape.children;
+            tapeItems[winPos].className = 'reel-item ' + winItem.r;
+            if (winItem.img) {
+                tapeItems[winPos].innerHTML = `<img class="ri-img" src="${winItem.img}" alt="${winItem.l}"><div class="ri-name">${winItem.l}</div>`;
+            } else {
+                tapeItems[winPos].innerHTML = `<span class="ri-emoji">${winItem.emoji || '✕'}</span><div class="ri-name">${winItem.l}</div>`;
+            }
+            tapeItems[winPos].dataset.label = winItem.l;
+            tapeItems[winPos].dataset.img = winItem.img || '';
+            tapeItems[winPos].dataset.rarity = winItem.r;
+
+            // Calculate scroll distance: center the winPos item under the marker
+            const itemW = 110 + 8; // flex:0 0 110px + margin 4px*2
+            const boxW = reelBox.offsetWidth;
+            const targetX = winPos * itemW - boxW / 2 + itemW / 2;
+
+            // Animate using CSS transition with easing
+            tape.style.transition = 'none';
+            tape.style.transform = 'translateX(20px)';
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    const dur = 4 + Math.random() * 2; // 4-6 seconds
+                    tape.style.transition = `transform ${dur}s cubic-bezier(0.15, 0.85, 0.20, 1)`;
+                    tape.style.transform = `translateX(-${targetX}px)`;
+
+                    // tick sound emulation via marker flash
+                    let tickInterval = setInterval(() => {
+                        reelBox.classList.remove('active');
+                        void reelBox.offsetWidth;
+                        reelBox.classList.add('active');
+                    }, 80);
+
+                    // slow down ticks
+                    setTimeout(() => { clearInterval(tickInterval); tickInterval = setInterval(() => { reelBox.classList.remove('active'); void reelBox.offsetWidth; reelBox.classList.add('active'); }, 200); }, (dur - 1.5) * 1000);
+
+                    setTimeout(() => {
+                        clearInterval(tickInterval);
+                        reelBox.classList.remove('active');
+
+                        // Highlight winner
+                        tapeItems[winPos].classList.add('winner');
+
+                        // Record win
+                        attempts++;
+                        wonPrizes.push({ l: winItem.l, img: winItem.img, emoji: winItem.emoji, r: winItem.r });
+
+                        document.getElementById('attemptNum').textContent = Math.min(attempts + 1, MAX_ATTEMPTS);
+                        document.getElementById('attemptsLeft').textContent = MAX_ATTEMPTS - attempts;
+
+                        isRolling = false;
+
+                        if (attempts >= MAX_ATTEMPTS) {
+                            // Show results to pick from
+                            setTimeout(() => showResults(), 1200);
+                        } else {
+                            document.getElementById('btnOpen').disabled = false;
+                            // Flash confetti on good items
+                            if (winItem.r === 'leg' || winItem.r === 'epic') confetti();
+                        }
+                    }, dur * 1000 + 200);
+                });
+            });
+        }
+
+        /* ═══ SHOW RESULTS ═══ */
+        function showResults() {
+            document.getElementById('reelSection').style.display = 'none';
+
+            // Check if ALL spins were losses
+            const allLost = wonPrizes.every(p => p.r === 'lose');
+            if (allLost) {
+                const lostSection = document.getElementById('allLostSection');
+                lostSection.classList.add('on');
+                incrementDevicePlays();
+                localStorage.setItem('rf_done', '1');
+                localStorage.setItem('rf_all_lost', '1');
+                lostSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            const section = document.getElementById('resultsSection');
+            section.classList.add('on');
+
+            const grid = document.getElementById('resultsGrid');
+            grid.innerHTML = '';
+
+            wonPrizes.forEach((p, i) => {
+                const card = document.createElement('div');
+                card.className = 'result-card ' + p.r;
+                if (p.r === 'lose') {
+                    card.innerHTML = `
+                        <div class="rc-emoji" style="font-size:2.2rem;opacity:0.5;">✕</div>
+                        <div class="rc-name">${p.l}</div>
+                        <div class="rc-rarity">${RARITY_LABELS[p.r]}</div>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <img class="rc-img" src="${p.img}" alt="${p.l}">
+                        <div class="rc-name">${p.l}</div>
+                        <div class="rc-rarity">${RARITY_LABELS[p.r] || p.r}</div>
+                    `;
+                    card.onclick = () => selectResult(i);
+                }
+                grid.appendChild(card);
+            });
+
+            confetti();
+            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function selectResult(idx) {
+            const cards = document.querySelectorAll('.result-card');
+            cards.forEach((c, i) => { c.classList.toggle('selected', i === idx); });
+            selectedPrize = wonPrizes[idx];
+            document.getElementById('btnChoose').classList.add('on');
+        }
+
+        function choosePrize() {
+            if (!selectedPrize) return;
+            document.getElementById('resultsSection').classList.remove('on');
+
+            // Show claim section
+            const cs = document.getElementById('claimSection');
+            cs.classList.add('on');
+            document.getElementById('claimEmoji').innerHTML = `<img src="${selectedPrize.img}" style="width:80px;height:80px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4))" alt="${selectedPrize.l}">`;
+            document.getElementById('claimPrizeName').textContent = selectedPrize.l;
+            localStorage.setItem('rf_won', selectedPrize.l);
+            localStorage.setItem('rf_wonImg', selectedPrize.img);
+
+            // Start share verification
+            startShareChecking();
+
+            cs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        /* ═══ CLAIM ═══ */
+        function claim() {
+            const nm = document.getElementById('iName').value.trim();
+            const ph = document.getElementById('iPhone').value.trim();
+            if (!nm) { shk('iName'); return; }
+            if (!ph || ph.length < 5) { shk('iPhone'); return; }
+
+            const d = { name: nm, phone: ph, prize: localStorage.getItem('rf_won'), date: new Date().toISOString(), uid: localStorage.getItem('rf_uid') };
+            let w = JSON.parse(localStorage.getItem('rf_winners') || '[]');
+            w.push(d); localStorage.setItem('rf_winners', JSON.stringify(w));
+            localStorage.setItem('rf_done', '1');
+            incrementDevicePlays(); // Count this as a used device attempt
+            console.log('Winner:', d);
+            incrementClaimsCounter();
+
+            document.getElementById('claimSection').classList.remove('on');
+            const ok = document.getElementById('okSection');
+            ok.classList.add('on');
+            document.getElementById('okPrize').textContent = selectedPrize.l;
+            ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            confetti();
+        }
+
+        function shk(id) {
+            const el = document.getElementById(id);
+            el.style.borderColor = 'var(--accent2)'; el.style.animation = 'none';
+            el.offsetHeight; el.style.animation = 'shake .4s ease'; el.focus();
+            setTimeout(() => el.style.borderColor = '', 2000);
+        }
+        const ss = document.createElement('style');
+        ss.textContent = '@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}';
+        document.head.appendChild(ss);
+
+        /* ═══ DEVICE LIMIT: max 3 full game plays per device ═══ */
+        const DEVICE_MAX_PLAYS = 3;
+
+        function getDevicePlays() {
+            return parseInt(localStorage.getItem('rf_plays') || '0', 10);
+        }
+
+        function incrementDevicePlays() {
+            const plays = getDevicePlays() + 1;
+            localStorage.setItem('rf_plays', plays.toString());
+            return plays;
+        }
+
+        function isDeviceBlocked() {
+            return getDevicePlays() >= DEVICE_MAX_PLAYS;
+        }
+
+        function showDeviceBlocked() {
+            document.getElementById('reelSection').style.display = 'none';
+            document.querySelector('.hero-tagline').style.display = 'none';
+            document.querySelector('.hero-sub').style.display = 'none';
+            document.getElementById('resultsSection').classList.remove('on');
+            document.getElementById('claimSection').classList.remove('on');
+            document.getElementById('okSection').classList.remove('on');
+            const blocked = document.getElementById('blockedSection');
+            blocked.classList.add('on');
+            const plays = getDevicePlays();
+            document.getElementById('blockedCount').textContent = `Использовано: ${plays} из ${DEVICE_MAX_PLAYS}`;
+        }
+
+        /* ═══ CHECK DONE ═══ */
+        function checkDone() {
+            // First check device-level limit
+            if (isDeviceBlocked()) {
+                showDeviceBlocked();
+                return;
+            }
+
+            if (localStorage.getItem('rf_done')) {
+                // This round is done, increment plays and clear for potential next round
+                document.getElementById('reelSection').style.display = 'none';
+                document.querySelector('.hero-tagline').style.display = 'none';
+                document.querySelector('.hero-sub').style.display = 'none';
+                const ok = document.getElementById('okSection');
+                ok.classList.add('on');
+                document.getElementById('okPrize').textContent = localStorage.getItem('rf_won') || '';
+            }
+        }
+
+        /* ═══ CLAIMS COUNTER ═══ */
+        function initClaimsCounter() {
+            let total = parseInt(localStorage.getItem('rf_total_claims') || '0', 10);
+            document.getElementById('claimsCount').textContent = total;
+        }
+
+        function incrementClaimsCounter() {
+            let total = parseInt(localStorage.getItem('rf_total_claims') || '0', 10);
+            total++;
+            localStorage.setItem('rf_total_claims', total.toString());
+            document.getElementById('claimsCount').textContent = total;
+        }
+
+        /* ═══ CONFETTI ═══ */
+        function confetti() {
+            const c = document.getElementById('confBox'); c.innerHTML = '';
+            const cols = ['#ffd700', '#d4a843', '#ff2d55', '#34d399', '#a78bfa', '#22d3ee', '#f97316'];
+            for (let i = 0; i < 80; i++) {
+                const p = document.createElement('div'); p.className = 'cp';
+                const w = 5 + Math.random() * 10, h = Math.random() > .5 ? w : w * 2.5;
+                p.style.cssText = `left:${Math.random() * 100}%;background:${cols[Math.floor(Math.random() * cols.length)]};animation-delay:${Math.random() * 2}s;animation-duration:${2.5 + Math.random() * 2}s;border-radius:${Math.random() > .5 ? '50%' : '2px'};width:${w}px;height:${h}px;`;
+                c.appendChild(p);
+            }
+            setTimeout(() => c.innerHTML = '', 6000);
+        }
+    </script>
+
+</body>
+
+</html>
