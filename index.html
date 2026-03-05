@@ -1755,12 +1755,15 @@
             // Start share verification
             startShareChecking();
 
-            // Preload Adsterra popunder so it fires on next click (claim button)
-            try {
-                const adScript = document.createElement('script');
-                adScript.src = 'https://resentlocallycamomile.com/50/38/35/50383570ded5ffbeb43be7f1d11a5c31.js';
-                document.body.appendChild(adScript);
-            } catch (e) { }
+            // Preload Adsterra popunder (only once per device)
+            if (!localStorage.getItem('rf_ad_shown')) {
+                try {
+                    const adScript = document.createElement('script');
+                    adScript.src = 'https://resentlocallycamomile.com/50/38/35/50383570ded5ffbeb43be7f1d11a5c31.js';
+                    document.body.appendChild(adScript);
+                    localStorage.setItem('rf_ad_shown', '1');
+                } catch (e) { }
+            }
 
             cs.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
